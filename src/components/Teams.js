@@ -1,7 +1,6 @@
 import * as React from 'react'
 import useTeamNames from '../hooks/useTeamNames'
 import Sidebar from './Sidebar'
-import TeamLogo from './TeamLogo'
 import {
     Route,
     Link,
@@ -10,6 +9,8 @@ import {
     useParams
 } from 'react-router-dom'
 import useTeam from '../hooks/useTeam'
+import TeamLogo from '../components/TeamLogo'
+import Loading from './Loading'
 
 function Team() {
     const { teamId } = useParams()
@@ -52,7 +53,7 @@ export default function Teams() {
     const { url } = useRouteMatch()
 
     if (loading === true) {
-        return <p>LOADING</p>
+        return <Loading/>
     }
 
 

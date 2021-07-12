@@ -4,6 +4,9 @@ import { parse } from 'query-string'
 import usePlayers from '../hooks/usePlayers'
 import Sidebar from './Sidebar'
 import slug from 'slug'
+import Loading from './Loading'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
 
 function Player({ players }) {
     const { playerId } = useParams()
@@ -54,7 +57,7 @@ export default function Players() {
     } = usePlayers(team)
 
     if (loading === true) {
-        return <p>LOADING</p>
+        return <Loading />
     }
 
     return (
@@ -63,14 +66,22 @@ export default function Players() {
                 title='Players'
                 list={players.map((player) => player.name)}
             />
-            <Switch>
-                <Route path={`${url}/:playerId`}>
-                    <Player players={players} />
-                </Route>
-                <Route path='*'>
-                    <div className='sidebar-instruction'>Select a Player</div>
-                </Route>
-            </Switch>
+            <TransitionGroup component={null}>
+                <CSSTransition
+                    timeout={500}
+                    classNames='fade'
+                    key={location.key}
+                >
+                    <Switch location={location}>
+                        <Route path={`${url}/:playerId`}>
+                            <Player players={players} />
+                        </Route>
+                        <Route path='*'>
+                            <div className='sidebar-instruction'>Select a Player</div>
+                        </Route>
+                    </Switch>
+                </CSSTransition>
+            </TransitionGroup>
         </div>
     )
 }

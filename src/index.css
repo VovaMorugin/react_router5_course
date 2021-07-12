@@ -1,5 +1,4 @@
 @import url("https://ui.dev/font");
-
 :root {
   --black: #000;
   --white: #fff;
@@ -13,9 +12,7 @@
   --gray: #282c35;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: inherit;
 }
 
@@ -235,51 +232,56 @@ li {
   .container {
     padding: 8px;
   }
-
   .large-header {
     font-size: 60px;
   }
-
   .medium-header {
     font-size: 40px;
   }
-
   .header {
     font-size: 25px;
     margin: 10px 0;
   }
-
   .avatar {
     width: 125px;
     border-radius: 62.5px;
   }
-
   .home-grid {
     flex-direction: column;
     align-items: center;
   }
-
   .info-list li {
     font-size: 20px;
   }
-
   .info-list div {
     font-size: 16px;
   }
   .championships li {
     font-size: 12px;
   }
-
   .sidebar-list {
     font-size: 12px;
   }
-
   .article {
     padding: 5px;
     margin: 5px;
   }
-
   .article-title {
     font-size: 16px;
   }
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500 ms ease-in;
+}
+
+.fade-exit {
+  opacity: 0;
+  position: absolute;
 }
